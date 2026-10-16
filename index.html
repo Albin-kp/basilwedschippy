@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3e9">
+  <meta name="description" content="You are warmly invited to celebrate the wedding of Basil and Chippy on 15 November 2026.">
+  <title>Basil & Chippy — Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f7f3e9;
+      --paper: #fffdf7;
+      --green: #354b3b;
+      --green2: #60745d;
+      --gold: #b39458;
+      --ink: #26352b;
+      --muted: #687166;
+      --line: rgba(53,75,59,.19);
+      --shadow: 0 20px 60px rgba(38,53,43,.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--cream); font-family: "DM Sans", sans-serif; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+    .topbar {
+      position: absolute; z-index: 3; top: 0; left: 0; width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      padding: 22px clamp(20px, 6vw, 84px); color: white;
+    }
+    .brand { font-family: "Cormorant Garamond", serif; font-size: 25px; letter-spacing: .06em; }
+    .nav { display: flex; gap: 25px; align-items: center; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .nav a { text-decoration: none; opacity: .92; }
+    .nav a:hover { color: #e6d2a3; }
+    .hero {
+      min-height: 92vh; position: relative; display: grid; place-items: center; overflow: hidden;
+      padding: 130px 22px 75px; text-align: center; color: #fffdf7;
+      background: linear-gradient(180deg, rgba(21,38,28,.38), rgba(21,38,28,.67)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=85") center 48%/cover;
+    }
+    .hero::before { content: ""; position: absolute; inset: 18px; border: 1px solid rgba(235,215,166,.66); pointer-events: none; }
+    .hero-content { position: relative; max-width: 850px; }
+    .eyebrow { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; }
+    .hero .eyebrow { color: #f0dfb9; }
+    h1, h2, h3, .serif { font-family: "Cormorant Garamond", serif; font-weight: 500; }
+    h1 { margin: 18px 0 8px; font-size: clamp(66px, 12vw, 132px); line-height: .82; letter-spacing: -.045em; }
+    .amp { display: block; color: #e0c58b; font-style: italic; font-size: .62em; margin: 12px 0; }
+    .hero-sub { margin: 28px auto 0; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; line-height: 1.9; }
+    .hero-date { display: inline-flex; gap: 15px; align-items: center; margin-top: 28px; color: #f0dfb9; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+    .hero-date::before, .hero-date::after { content: ""; width: 34px; height: 1px; background: #d8bd7c; }
+    .scroll-cue { position: absolute; bottom: 26px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
+    .section { padding: 90px 22px; }
+    .container { width: min(1080px, 100%); margin: auto; }
+    .intro { text-align: center; background: var(--paper); }
+    .small-flourish { color: var(--gold); font-size: 25px; letter-spacing: .22em; margin-bottom: 12px; }
+    .section h2 { margin: 10px 0 18px; font-size: clamp(42px, 6vw, 66px); line-height: .98; color: var(--green); }
+    .intro p { max-width: 610px; margin: 0 auto; color: var(--muted); font-size: 15px; line-height: 1.9; }
+    .countdown { display: flex; justify-content: center; gap: clamp(14px, 5vw, 52px); margin: 34px auto 0; }
+    .count-unit { min-width: 54px; }
+    .count-number { font-family: "Cormorant Garamond", serif; font-size: clamp(35px, 6vw, 53px); line-height: 1; color: var(--green); }
+    .count-label { margin-top: 8px; font-size: 9px; letter-spacing: .17em; text-transform: uppercase; color: var(--muted); }
+    .details { background: var(--cream); }
+    .details-head { text-align: center; margin-bottom: 42px; }
+    .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .event-card { background: var(--paper); border: 1px solid var(--line); padding: clamp(26px, 5vw, 48px); text-align: center; box-shadow: var(--shadow); }
+    .event-icon { width: 48px; height: 48px; margin: 0 auto 18px; display: grid; place-items: center; border: 1px solid #cbb781; border-radius: 50%; color: var(--gold); font-size: 21px; }
+    .event-card h3 { font-size: 37px; color: var(--green); margin: 0 0 12px; }
+    .event-card .event-time { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+    .event-card p { color: var(--muted); line-height: 1.8; font-size: 14px; min-height: 48px; }
+    .text-link { display: inline-block; margin-top: 8px; padding-bottom: 5px; border-bottom: 1px solid var(--gold); text-decoration: none; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: var(--green); }
+    .quote-band { background: var(--green); color: #f7f3e9; padding: 68px 22px; text-align: center; }
+    .quote-band .quote { max-width: 760px; margin: auto; font-family: "Cormorant Garamond", serif; font-size: clamp(28px, 4vw, 43px); line-height: 1.3; font-style: italic; }
+    .quote-band .ref { margin-top: 20px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #d7c28d; }
+    .gallery { background: var(--paper); }
+    .gallery-head { text-align: center; margin-bottom: 35px; }
+    .gallery-grid { display: grid; grid-template-columns: 1.1fr .9fr 1fr; gap: 14px; }
+    .gallery-grid img { width: 100%; height: 330px; object-fit: cover; display: block; filter: saturate(.82); transition: transform .35s, filter .35s; }
+    .gallery-grid img:hover { transform: translateY(-4px); filter: saturate(1); }
+    .gallery-grid .tall { height: 390px; margin-top: 30px; }
+    .rsvp { background: var(--cream); }
+    .rsvp-card { width: min(680px, 100%); margin: auto; padding: clamp(28px, 6vw, 55px); background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .rsvp-card h2, .rsvp-card .intro-copy { text-align: center; }
+    .rsvp-card .intro-copy { color: var(--muted); font-size: 14px; line-height: 1.8; margin: 0 auto 28px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field.full { grid-column: 1/-1; }
+    label { color: var(--green); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    input, select, textarea { width: 100%; border: 1px solid var(--line); background: #fffefa; padding: 13px 12px; color: var(--ink); outline: none; border-radius: 0; }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 9px; border: 1px solid var(--green); background: var(--green); color: white; padding: 14px 22px; cursor: pointer; text-decoration: none; text-transform: uppercase; font-size: 10px; letter-spacing: .15em; transition: .2s; }
+    .btn:hover { background: #26392c; }
+    .rsvp .btn { width: 100%; margin-top: 20px; }
+    .form-note { color: var(--muted); font-size: 11px; line-height: 1.6; margin: 14px 0 0; text-align: center; }
+    .footer { background: #25372b; color: #f7f3e9; text-align: center; padding: 55px 22px 35px; }
+    .footer .names { font-family: "Cormorant Garamond", serif; font-size: 45px; }
+    .footer p { color: #c8d0c5; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+    .footer .tiny { margin-top: 30px; color: #9ba99a; font-size: 10px; letter-spacing: .06em; text-transform: none; }
+    .music-btn { position: fixed; z-index: 5; right: 18px; bottom: 18px; display: flex; align-items: center; gap: 9px; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; padding: 12px 16px; background: rgba(39,58,44,.94); color: white; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,.18); font-size: 11px; }
+    .music-dot { width: 7px; height: 7px; border-radius: 50%; background: #d7c28d; }
+    .music-btn.playing .music-dot { animation: pulse 1s infinite alternate; }
+    @keyframes pulse { to { opacity: .3; transform: scale(.7); } }
+    .toast { display: none; margin-top: 14px; padding: 12px; border: 1px solid var(--line); background: #f5f0e4; color: var(--green); font-size: 12px; line-height: 1.6; }
+    .toast.show { display: block; }
+    @media (max-width: 700px) {
+      .topbar { padding: 17px 25px; }
+      .nav { gap: 13px; font-size: 9px; }
+      .nav a:nth-child(2) { display: none; }
+      .hero { min-height: 86vh; }
+      .hero::before { inset: 10px; }
+      .section { padding: 68px 20px; }
+      .event-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .gallery-grid img, .gallery-grid .tall { height: 230px; margin-top: 0; }
+      .gallery-grid img:last-child { grid-column: 1/-1; height: 260px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Basil and Chippy home">B & C</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#story">Our day</a><a href="#gallery">Gallery</a><a href="#rsvp">RSVP</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">Together with our families</div>
+        <h1>Basil <span class="amp">&</span> Chippy</h1>
+        <div class="hero-sub">Joyfully invite you to celebrate<br>the beginning of our forever</div>
+        <div class="hero-date">Sunday · 15 November 2026</div>
+      </div>
+      <div class="scroll-cue">Scroll to explore ↓</div>
+    </section>
+
+    <section class="section intro" id="story">
+      <div class="container">
+        <div class="small-flourish">✦ &nbsp; ❦ &nbsp; ✦</div>
+        <div class="eyebrow" style="color:var(--gold)">A promise of forever</div>
+        <h2>Two hearts, one beautiful journey.</h2>
+        <p>With grateful hearts and the blessings of our families, we invite you to share in the joy of our wedding. Your presence will make our special day even more meaningful.</p>
+        <div class="countdown" aria-label="Countdown to the wedding">
+          <div class="count-unit"><div class="count-number" id="days">--</div><div class="count-label">Days</div></div>
+          <div class="count-unit"><div class="count-number" id="hours">--</div><div class="count-label">Hours</div></div>
+          <div class="count-unit"><div class="count-number" id="minutes">--</div><div class="count-label">Minutes</div></div>
+          <div class="count-unit"><div class="count-number" id="seconds">--</div><div class="count-label">Seconds</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section details" id="details">
+      <div class="container">
+        <div class="details-head">
+          <div class="eyebrow" style="color:var(--gold)">Please join us</div>
+          <h2>Wedding celebrations</h2>
+          <div class="small-flourish">— ✧ —</div>
+        </div>
+        <div class="event-grid">
+          <article class="event-card">
+            <div class="event-icon" aria-hidden="true">✧</div>
+            <div class="event-time">Sunday · 15 November 2026 · 9:00 AM</div>
+            <h3>The Ceremony</h3>
+            <p>Patriarchal Centre<br>Puthencruz / Puthenkurish, Kerala</p>
+            <a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Patriarchal+Centre+Puthencruz+Kerala">Get directions ↗</a>
+          </article>
+          <article class="event-card">
+            <div class="event-icon" aria-hidden="true">❦</div>
+            <div class="event-time">Following the ceremony · 2:00 PM</div>
+            <h3>The Reception</h3>
+            <p>Petrose<br>Pathammayil, Kerala</p>
+            <a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Petrose+Pathammayil+Kerala">Get directions ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-band">
+      <div class="quote">“And now these three remain: faith, hope and love. But the greatest of these is love.”</div>
+      <div class="ref">1 Corinthians 13:13</div>
+    </section>
+
+    <section class="section gallery" id="gallery">
+      <div class="container">
+        <div class="gallery-head">
+          <div class="eyebrow" style="color:var(--gold)">Moments to remember</div>
+          <h2>A little romance</h2>
+          <p style="color:var(--muted);font-size:14px">A glimpse of the love and joy we look forward to sharing.</p>
+        </div>
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Romantic wedding celebration" loading="lazy">
+          <img class="tall" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=900&q=80" alt="Wedding couple holding hands" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=900&q=80" alt="Wedding flowers and details" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="section rsvp" id="rsvp">
+      <div class="container">
+        <div class="rsvp-card">
+          <div class="small-flourish" style="text-align:center">✦</div>
+          <div class="eyebrow" style="text-align:center;color:var(--gold)">We hope you can make it</div>
+          <h2>Kindly RSVP</h2>
+          <p class="intro-copy">Please let us know if you’ll be joining us. We can’t wait to celebrate together!</p>
+          <form id="rsvpForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="guestName">Your name</label>
+                <input id="guestName" name="guestName" autocomplete="name" required placeholder="Full name">
+              </div>
+              <div class="field">
+                <label for="guestCount">Number attending</label>
+                <select id="guestCount" name="guestCount" required>
+                  <option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5+">5 or more</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="attendance">Will you attend?</label>
+                <select id="attendance" name="attendance" required>
+                  <option value="Joyfully accepts">Joyfully accepts</option>
+                  <option value="Regretfully declines">Regretfully declines</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="message">A note for the couple (optional)</label>
+                <textarea id="message" name="message" rows="3" placeholder="Write a little message..."></textarea>
+              </div>
+            </div>
+            <button class="btn" type="submit">Send your RSVP ↗</button>
+            <div class="toast" id="rsvpToast" role="status"></div>
+            <p class="form-note">Your RSVP will open your email app with the details ready to send. The site owner can configure the recipient email in the code.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="small-flourish">❦</div>
+    <div class="names">Basil & Chippy</div>
+    <p>15 · 11 · 2026 &nbsp; | &nbsp; With love, always</p>
+    <p class="tiny">Made with love for a beautiful beginning.</p>
+  </footer>
+
+  <button class="music-btn" id="musicToggle" type="button" aria-pressed="false" aria-label="Play background music">
+    <span class="music-dot"></span><span id="musicLabel">Play music</span> ♫
+  </button>
+  <!-- Replace the audio URL below with a licensed song or music file you have permission to use. -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946c7c2c15.mp3?filename=romantic-piano-124009.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Wedding date and time are interpreted in the visitor's local timezone.
+    const weddingDate = new Date("2026-11-15T09:00:00");
+    function updateCountdown() {
+      const diff = weddingDate.getTime() - Date.now();
+      const safeDiff = Math.max(0, diff);
+      document.getElementById("days").textContent = Math.floor(safeDiff / 86400000);
+      document.getElementById("hours").textContent = Math.floor((safeDiff % 86400000) / 3600000);
+      document.getElementById("minutes").textContent = Math.floor((safeDiff % 3600000) / 60000);
+      document.getElementById("seconds").textContent = Math.floor((safeDiff % 60000) / 1000);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const music = document.getElementById("bgMusic");
+    const musicToggle = document.getElementById("musicToggle");
+    const musicLabel = document.getElementById("musicLabel");
+    musicToggle.addEventListener("click", async () => {
+      if (music.paused) {
+        try {
+          await music.play();
+          musicToggle.classList.add("playing");
+          musicToggle.setAttribute("aria-pressed", "true");
+          musicToggle.setAttribute("aria-label", "Pause background music");
+          musicLabel.textContent = "Pause music";
+        } catch (e) {
+          musicLabel.textContent = "Music unavailable";
+          setTimeout(() => musicLabel.textContent = "Play music", 2500);
+        }
+      } else {
+        music.pause();
+        musicToggle.classList.remove("playing");
+        musicToggle.setAttribute("aria-pressed", "false");
+        musicToggle.setAttribute("aria-label", "Play background music");
+        musicLabel.textContent = "Play music";
+      }
+    });
+
+    // IMPORTANT: Change this to the couple/family's real RSVP email before publishing.
+    const RSVP_EMAIL = "YOUR_RSVP_EMAIL@example.com";
+    document.getElementById("rsvpForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const name = form.get("guestName");
+      const count = form.get("guestCount");
+      const attendance = form.get("attendance");
+      const message = form.get("message") || "—";
+      const subject = encodeURIComponent("Wedding RSVP — Basil & Chippy");
+      const body = encodeURIComponent(
+        `RSVP for Basil & Chippy\n\nName: ${name}\nResponse: ${attendance}\nGuests: ${count}\nMessage: ${message}`
+      );
+      const toast = document.getElementById("rsvpToast");
+      if (RSVP_EMAIL === "YOUR_RSVP_EMAIL@example.com") {
+        toast.textContent = "The RSVP form is ready. Before publishing, open index.html and replace YOUR_RSVP_EMAIL@example.com with the email address that should receive replies.";
+        toast.classList.add("show");
+        return;
+      }
+      toast.textContent = "Opening your email app to send the RSVP…";
+      toast.classList.add("show");
+      window.location.href = `mailto:${RSVP_EMAIL}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
